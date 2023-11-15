@@ -23,11 +23,6 @@ img {
     border-radius: 10px;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
 
 .is-hidden {
     position: absolute;
