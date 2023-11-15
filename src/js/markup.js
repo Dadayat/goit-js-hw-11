@@ -1,5 +1,4 @@
 import { refs } from './refs';
-
 const { gallery } = refs;
 
 export function createMarkup(searchResults) {
@@ -7,9 +6,8 @@ export function createMarkup(searchResults) {
         return `<div class="photo-card">
         <div class="img_wrap">
             <a class="gallery_link" href="${largeImageURL}">
-                <img src="${webformatURL}" alt="${tags}" width="300" loading="lazy" />
+                <img src="${webformatURL}" alt="${tags}" loading="lazy" />
             </a>
-        </div>
         <div class="info">
             <p class="info-item">
             <b>Likes: ${likes}</b>
@@ -24,6 +22,7 @@ export function createMarkup(searchResults) {
             <b>Downloads: ${downloads}</b>
             </p>
         </div>
+         </div>
         </div>`
     });
     gallery.insertAdjacentHTML("beforeend", arrPhotos.join(''));

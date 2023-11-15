@@ -4,6 +4,7 @@ import { createMarkup } from './js/markup';
 import { refs } from './js/refs';
 import { lightbox } from './js/lightbox';
 
+
 const { searchForm, gallery, btnLoadMore } = refs;
 
 const paramsForNotify = {
@@ -46,7 +47,7 @@ function onSubmitForm(event) {
                 Notify.failure('Sorry, there are no images matching your search query. Please try again.', paramsForNotify);
             } else {
                 Notify.info(`Hooray! We found ${data.totalHits} images.`, paramsForNotify);
-                // console.log(searchResults);
+                console.log(searchResults);
                 createMarkup(searchResults);
                 lightbox.refresh();
 
@@ -55,7 +56,7 @@ function onSubmitForm(event) {
                 btnLoadMore.classList.remove('is-hidden');
                 window.addEventListener('scroll', showLoadMorePage);
             };
-           
+            // scrollPage();
         })
         .catch(onFetchError);
 
@@ -79,7 +80,7 @@ function onClickLoadMore() {
                 window.removeEventListener('scroll', showLoadMorePage);
             };
             lightbox.refresh();
-           
+            // scrollPage();
         })
         .catch(onFetchError);
 };
@@ -88,7 +89,14 @@ function onFetchError() {
     Notify.failure('Oops! Something went wrong! Try reloading the page or make another choice!', paramsForNotify);
 };
 
+// function scrollPage() {
+//     const { height: cardHeight } = gallery.firstElementChild.getBoundingClientRect();
 
+//     window.scrollBy({
+//         top: cardHeight * 2,
+//         behavior: "smooth",
+//     });
+// };
 
 function showLoadMorePage() {
     if (checkIfEndOfPage()) {
@@ -101,3 +109,4 @@ function checkIfEndOfPage() {
     window.innerHeight + window.scrollY >= document.documentElement.scrollHeight
   );
 }
+
