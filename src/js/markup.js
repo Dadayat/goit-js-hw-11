@@ -2,9 +2,18 @@ import { refs } from './refs';
 const { gallery } = refs;
 
 export function createMarkup(searchResults) {
-    const arrPhotos = searchResults.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
-        return `<div class="photo-card">
-        <div class="img_wrap">
+  const arrPhotos = searchResults.map(
+    ({
+      webformatURL,
+      largeImageURL,
+      tags,
+      likes,
+      views,
+      comments,
+      downloads,
+    }) => {
+      return `<div class="photo-card">
+      
             <a class="gallery_link" href="${largeImageURL}">
                 <img src="${webformatURL}" alt="${tags}" loading="lazy" />
             </a>
@@ -22,8 +31,8 @@ export function createMarkup(searchResults) {
             <b>Downloads: ${downloads}</b>
             </p>
         </div>
-         </div>
-        </div>`
-    });
-    gallery.insertAdjacentHTML("beforeend", arrPhotos.join(''));
-};
+        </div>`;
+    }
+  );
+  gallery.insertAdjacentHTML('beforeend', arrPhotos.join(''));
+}
