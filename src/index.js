@@ -66,9 +66,9 @@ function onSubmitForm(event) {
         );
       } else {
         btnLoadMore.classList.remove('is-hidden');
-        window.addEventListener('scroll', showLoadMorePage);
+        // window.addEventListener('scroll', showLoadMorePage);
         btnLoadMore.addEventListener('click', onClickLoadMore);
-        event.currentTarget.reset();
+        //event.currentTarget.reset();
       }; lightbox.refresh();
     })  
     .catch(er => console.log(er));
@@ -87,18 +87,18 @@ function onClickLoadMore() {
                     btnLoadMore.classList.add('is-hidden');
                     Notify.info("We're sorry, but you've reached the end of search results.", paramsForNotify);
                     btnLoadMore.removeEventListener('click', onClickLoadMore);
-                    window.removeEventListener('scroll', showLoadMorePage);
+                    // window.removeEventListener('scroll', showLoadMorePage);
             }; lightbox.refresh();
             })     
     .catch(er => console.log(er));
 
 };
 
-function showLoadMorePage() {
-    if (checkIfEndOfPage()) {
-        onClickLoadMore();
-    };
-};
+// function showLoadMorePage() {
+//     if (checkIfEndOfPage()) {
+//         onClickLoadMore();
+//     };
+// };
 
 function checkIfEndOfPage() {
   return (
