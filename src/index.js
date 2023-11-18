@@ -78,21 +78,25 @@ function onSubmitForm(event) {
 btnLoadMore.addEventListener('click', onClickLoadMore);
     
 function onClickLoadMore() {
-    page += 1;
-    fetchPhoto(keyOfSearchPhoto, page, perPage)
-        .then(data => {
-            const searchResults = data.hits;           
-          createMarkup(searchResults);
-            if (page === 1 && searchResults.length < 40) {
-                    btnLoadMore.classList.add('is-hidden');
-                    Notify.info("We're sorry, but you've reached the end of search results.", paramsForNotify);
-                    btnLoadMore.removeEventListener('click', onClickLoadMore);
-                    // window.removeEventListener('scroll', showLoadMorePage);
-            }; lightbox.refresh();
-            })     
+  page += 1;
+  fetchPhoto(keyOfSearchPhoto, page, perPage)
+    .then(data => {
+      const searchResults = data.hits;
+      const numberOfPage = Math.ceil(data.totalHits / perPage);
+      createMarkup(searchResults);
+      if (page >= numberOfPage) {
+        btnLoadMore.classList.add('is-hidden');
+        Notify.info(
+          "We're sorry, but you've reached the end of search results.",
+          paramsForNotify
+        );
+        btnLoadMore.removeEventListener('click', onClickLoadMore);
+        // window.removeEventListener('scroll', showLoadMorePage);
+      }
+      lightbox.refresh();
+    })
     .catch(er => console.log(er));
-
-};
+}
 
 // function showLoadMorePage() {
 //     if (checkIfEndOfPage()) {
